@@ -1,4 +1,4 @@
-package bootcamp.shopservice;
+package bootcamp.shopservice.product;
 
 import java.util.ArrayList;
 import java.util.List;
