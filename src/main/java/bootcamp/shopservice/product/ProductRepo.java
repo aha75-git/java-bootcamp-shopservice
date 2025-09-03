@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductRepo {
-    private List<Product> products;
+    private final List<Product> products;
 
     public ProductRepo() {
         this.products = new ArrayList<>();
@@ -41,5 +41,13 @@ public class ProductRepo {
 
     public boolean remove(String productId) {
         return this.products.removeIf(product -> product.id().equals(productId));
+    }
+
+    public void removeAll() {
+        this.products.clear();
+    }
+
+    public boolean isEmpty() {
+        return this.products.isEmpty();
     }
 }

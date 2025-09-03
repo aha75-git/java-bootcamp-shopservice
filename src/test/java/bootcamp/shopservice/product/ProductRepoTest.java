@@ -77,4 +77,35 @@ public class ProductRepoTest {
         assertEquals(1, productRepo.getProducts().size());
         assertEquals(product2.id(), productRepo.getProduct(product2.id()).id());
     }
+
+    @Test
+    void testRemoveAll() {
+        productRepo.add(product1);
+        productRepo.add(product2);
+        productRepo.add(product3);
+        assertEquals(3, productRepo.getProducts().size());
+        productRepo.removeAll();
+        assertTrue(productRepo.isEmpty());
+    }
+
+    @Test
+    void testIsEmpty_shouldReturnFalse_whenIsNotEmpty() {
+        productRepo.add(product1);
+        productRepo.add(product2);
+        productRepo.add(product3);
+
+        assertFalse(productRepo.isEmpty());
+        productRepo.remove(product1);
+        assertFalse(productRepo.isEmpty());
+    }
+
+    @Test
+    void testIsEmpty_shouldReturnTrue_whenIsEmpty() {
+        assertTrue(productRepo.isEmpty());
+        productRepo.add(product1);
+        productRepo.add(product2);
+        productRepo.add(product3);
+        productRepo.removeAll();
+        assertTrue(productRepo.isEmpty());
+    }
 }
