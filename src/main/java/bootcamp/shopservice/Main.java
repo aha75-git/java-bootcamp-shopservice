@@ -5,6 +5,7 @@ import bootcamp.shopservice.order.OrderMapRepo;
 import bootcamp.shopservice.order.OrderRepo;
 import bootcamp.shopservice.product.Product;
 import bootcamp.shopservice.product.ProductRepo;
+import bootcamp.shopservice.shop.ProductManagementSystem;
 import bootcamp.shopservice.shop.ShopService;
 
 import java.math.BigDecimal;
@@ -59,5 +60,9 @@ public class Main {
         ShopService shopService = new ShopService(orderRepo, productRepo);
         shopService.placeOrder(order1);
         shopService.placeOrder(order2);
+
+
+        ProductManagementSystem system = new ProductManagementSystem();
+        system.start();
     }
 }
