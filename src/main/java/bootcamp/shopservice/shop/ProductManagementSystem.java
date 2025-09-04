@@ -95,10 +95,7 @@ public class ProductManagementSystem {
         int count = scanner.nextInt();
         scanner.nextLine(); // Zeilenumbruch konsumieren
 
-        //List<Product> orderedProducts = new ArrayList<>();
         Map<Product, Integer> mapProductQuantity = new HashMap<>();
-        //List<Integer> quantities = new ArrayList<>();
-        //Order order1 = new Order("1", mapProductQuantity);
 
         for (int i = 0; i < count; i++) {
             System.out.print("Produkt-ID für Produkt " + (i + 1) + ": ");
@@ -108,11 +105,8 @@ public class ProductManagementSystem {
             scanner.nextLine(); // Zeilenumbruch konsumieren
 
             Product product = productRepo.getProduct(productId);
-            //if (product != null && product.stockQuantity() >= quantity) {
             if (productRepo.isProductInStock(productId, quantity)) {
                 mapProductQuantity.put(product, quantity);
-                //orderedProducts.add(product);
-                //quantities.add(quantity);
             } else {
                 System.out.println(ANSI_RED + "Produkt mit ID " + productId + " ist nicht verfügbar oder nicht ausreichend auf Lager." + ANSI_RESET);
                 return;
