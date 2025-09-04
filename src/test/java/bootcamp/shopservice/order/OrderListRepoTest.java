@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,22 +23,40 @@ public class OrderListRepoTest {
     Product product5;
     Product product6;
     Product product7;
+    Map<Product, Integer> mapProductQuantity1;
+    Map<Product, Integer> mapProductQuantity2;
+    Map<Product, Integer> mapProductQuantity3;
 
     @BeforeEach
     void setUp() {
         orderListRepo = new OrderListRepo();
 
-        product1 = new Product("1", "Buch", BigDecimal.valueOf(3.49));
-        product2 = new Product("2", "Heft", BigDecimal.valueOf(2.99));
-        product3 = new Product("3", "Sony", BigDecimal.valueOf(45.98));
-        product4 = new Product("4", "Samsung", BigDecimal.valueOf(34.59));
-        product5 = new Product("5", "Grundig", BigDecimal.valueOf(44.99));
-        product6 = new Product("4", "Kugelschreiben", BigDecimal.valueOf(5.99));
-        product7 = new Product("5", "Tinte", BigDecimal.valueOf(2.99));
+        product1 = new Product("1", "Buch", BigDecimal.valueOf(3.49), 7);
+        product2 = new Product("2", "Heft", BigDecimal.valueOf(2.99), 14);
+        product3 = new Product("3", "Sony", BigDecimal.valueOf(45.98), 4);
+        product4 = new Product("4", "Samsung", BigDecimal.valueOf(34.59), 5);
+        product5 = new Product("5", "Grundig", BigDecimal.valueOf(44.99), 6);
+        product6 = new Product("4", "Kugelschreiber", BigDecimal.valueOf(5.99), 22);
+        product7 = new Product("5", "Tinte", BigDecimal.valueOf(2.99), 12);
 
-        order1 = new Order("1", Arrays.asList(product1, product2));
-        order2 = new Order("2", Arrays.asList(product3, product4, product5));
-        order3 = new Order("3", Arrays.asList(product6, product7));
+        mapProductQuantity1 = new HashMap<>();
+        mapProductQuantity2 = new HashMap<>();
+        mapProductQuantity3 = new HashMap<>();
+
+        // Zur Bestellung 1
+        mapProductQuantity1.put(product1, 3);
+        mapProductQuantity1.put(product2, 1);
+        // Zur Bestellung 2
+        mapProductQuantity2.put(product3, 2);
+        mapProductQuantity2.put(product4, 4);
+        mapProductQuantity2.put(product5, 5);
+        // Zur Bestellung 3
+        mapProductQuantity3.put(product6, 6);
+        mapProductQuantity3.put(product7, 7);
+
+        order1 = new Order("1", mapProductQuantity1);
+        order2 = new Order("2", mapProductQuantity2);
+        order3 = new Order("3", mapProductQuantity3);
     }
 
     @Test

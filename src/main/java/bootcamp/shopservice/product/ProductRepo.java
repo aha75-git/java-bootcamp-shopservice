@@ -50,4 +50,23 @@ public class ProductRepo {
     public boolean isEmpty() {
         return this.products.isEmpty();
     }
+
+    public boolean updateStock(String productId, int quantityChange) {
+        Product product = this.getProduct(productId);
+        if (product != null) {
+            if (quantityChange < 0) {
+                return false;
+            }
+
+            products.remove(product);
+            products.add(new Product(product.id(), product.name(), product.price(), quantityChange));
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isProductInStock(String productId, int quantity) {
+        Product product = this.getProduct(productId);
+        return product != null && product.stockQuantity() >= quantity;
+    }
 }

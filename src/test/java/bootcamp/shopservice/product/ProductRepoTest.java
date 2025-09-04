@@ -16,9 +16,9 @@ public class ProductRepoTest {
     @BeforeEach
     void setUp() {
         productRepo = new ProductRepo();
-        product1 = new Product("1", "Buch", BigDecimal.valueOf(3.49));
-        product2 = new Product("2", "Samsung", BigDecimal.valueOf(22.99));
-        product3 = new Product("3", "Samsung", BigDecimal.valueOf(45.98));
+        product1 = new Product("1", "Buch", BigDecimal.valueOf(3.49), 9);
+        product2 = new Product("2", "Samsung", BigDecimal.valueOf(22.99), 5);
+        product3 = new Product("3", "Samsung", BigDecimal.valueOf(45.98), 5);
     }
 
     @Test
@@ -107,5 +107,24 @@ public class ProductRepoTest {
         productRepo.add(product3);
         productRepo.removeAll();
         assertTrue(productRepo.isEmpty());
+    }
+
+    @Test
+    void testIsProductInStock_shouldReturnTrue_whenIsProductInStock() {
+        productRepo.add(product1);
+        assertTrue(productRepo.isProductInStock(product1.id(), 8));
+        assertTrue(productRepo.isProductInStock(product1.id(), 9));
+    }
+
+    @Test
+    void testIsProductInStock_shouldReturnFalse_whenIsProductNotInStock() {
+        productRepo.add(product1);
+        assertFalse(productRepo.isProductInStock(product1.id(), 10));
+    }
+
+    @Test
+    void testIsProductInStock_shouldReturnFalse_whenIsProductNull() {
+        productRepo.add(product2);
+        assertFalse(productRepo.isProductInStock(product1.id(), 6));
     }
 }
