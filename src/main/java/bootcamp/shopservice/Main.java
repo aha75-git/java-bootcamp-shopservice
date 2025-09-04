@@ -57,10 +57,28 @@ public class Main {
         orderRepo.add(order2);
         orderRepo.add(order3);
 
-        ShopService shopService = new ShopService(orderRepo, productRepo);
-        shopService.placeOrder(order1);
-        shopService.placeOrder(order2);
+        System.out.println("Bestellung wird vorbereitet: " + order1);
+        System.out.println("Bestellung wird vorbereitet: " + order2);
+        System.out.println();
 
+        ShopService shopService = new ShopService(orderRepo, productRepo);
+
+        if (shopService.placeOrder(order1)) {
+            System.out.println("Bestellung aufgegeben: " + order1);
+        } else {
+            System.out.println("Bestellung kann nicht aufgegeben werden: " + order1);
+        }
+
+        System.out.println();
+
+        if (shopService.placeOrder(order2)) {
+            System.out.println("Bestellung aufgegeben: " + order2);
+        } else {
+            System.out.println("Bestellung kann nicht aufgegeben werden: " + order2);
+        }
+
+        System.out.println();
+        System.out.println();
 
         ProductManagementSystem system = new ProductManagementSystem();
         system.start();

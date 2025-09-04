@@ -17,7 +17,6 @@ public class ShopService {
     }
 
     public boolean placeOrder(Order order) {
-        //for (Product product : order.products()) {
         for (Map.Entry<Product, Integer> entries : order.mapProductQuantity().entrySet() ) {
             Product product = entries.getKey();
             Integer quantity = entries.getValue();
