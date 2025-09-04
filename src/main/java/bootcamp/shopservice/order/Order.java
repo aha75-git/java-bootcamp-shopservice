@@ -3,7 +3,6 @@ package bootcamp.shopservice.order;
 import bootcamp.shopservice.product.Product;
 
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Map;
 
 public record Order(String orderId, Map<Product, Integer> mapProductQuantity) {
